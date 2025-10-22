@@ -2,6 +2,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
+import { API_BASE_URL } from "../config/api";
 
 interface LoginData {
   email: string;
@@ -9,7 +10,7 @@ interface LoginData {
 }
 
 async function loginApi(data: LoginData) {
-  const response = await fetch("http://localhost:8000/api/login", {
+  const response = await fetch(`${API_BASE_URL}/api/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
