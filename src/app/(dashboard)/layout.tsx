@@ -32,7 +32,9 @@ export default function DashboardLayout({
 
           {/* Mobile - compact header */}
           <div className="flex md:hidden items-center  justify-between w-full">
-            <h1 className="text-lg font-semibold">BinarCode</h1>
+            <h1 className="text-lg font-semibold">
+              <Link href="/">BinarCode</Link>
+            </h1>
 
             <div>
               <span className="flex">
