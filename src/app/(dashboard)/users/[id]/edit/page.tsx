@@ -1,8 +1,12 @@
-export default function EditUserPage({ params }: { params: { id: string } }) {
+export default async function EditUserPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = await params;
   return (
     <div>
-      <h1>Edit User {params.id}</h1>
-      {/* Form de editare */}
+      <h1>Edit User {id}</h1>
     </div>
   );
 }

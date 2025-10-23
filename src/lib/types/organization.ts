@@ -37,3 +37,7 @@ export interface OrganizationsResponse {
     filters: string;
   };
 }
+
+export interface SingleOrganizationData {
+  data: OrganizationData;
+}

@@ -18,5 +18,6 @@ export async function apiRestify<T>(
   if (!response.ok) {
     throw new Error("Api request failed");
   }
-  return response.json();
+  const text = await response.text();
+  return text ? JSON.parse(text) : (undefined as T);
 }

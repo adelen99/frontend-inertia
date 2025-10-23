@@ -24,7 +24,7 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       user: null,
       token: null,
-      isLoading: true, // Inițial true până se încarcă
+      isLoading: true,
       setAuth: (user, token) => set({ user, token, isLoading: false }),
       logout: () => set({ user: null, token: null }),
       setIsLoading: (loading) => set({ isLoading: loading }),
@@ -32,7 +32,6 @@ export const useAuthStore = create<AuthState>()(
     {
       name: "auth-storage",
       onRehydrateStorage: () => (state) => {
-        // Marchează ca loaded după hydration
         state?.setIsLoading(false);
       },
     }

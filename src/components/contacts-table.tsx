@@ -9,42 +9,42 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
-import { OrganizationData } from "@/lib/types/organization";
+import { ContactData } from "@/lib/types/contacts";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { useMemo, useState } from "react";
 
-interface OrganizationsTableProps {
-  organizations: OrganizationData[];
+interface ContactsTablePage {
+  contacts: ContactData[];
   isLoading?: boolean;
 }
 
-export function OrganizationsTable({
-  organizations,
-  isLoading = false,
-}: OrganizationsTableProps) {
+const ContactsTable = ({ contacts, isLoading = false }: ContactsTablePage) => {
   const router = useRouter();
   const [searchInput, setSearchInput] = useState("");
 
-  const filteredOrganizations = useMemo(() => {
-    if (!searchInput) return organizations;
-    return organizations.filter((org) => {
+  const filteredContacts = useMemo(() => {
+    if (!contacts) return [];
+    if (!searchInput) return contacts;
+    return contacts.filter((contact) => {
       const searchLower = searchInput.toLowerCase();
-      return org.attributes.name?.toLowerCase().includes(searchLower);
+      return (
+        contact.attributes.first_name?.toLowerCase().includes(searchLower) ||
+        contact.attributes.last_name?.toLowerCase().includes(searchLower)
+      );
     });
-  }, [organizations, searchInput]);
+  }, [contacts, searchInput]);
 
   const resetSearchInput = () => {
     setSearchInput("");
   };
-
   return (
     <div className="space-y-4">
       <div className="flex justify-between">
         <div className="flex gap-4">
           <Input
-            placeholder="Search organizations..."
+            placeholder="Search contacts..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             className="max-w-sm"
@@ -58,7 +58,7 @@ export function OrganizationsTable({
             router.push("/organizations/create");
           }}
         >
-          Create organization
+          Create contact
         </Button>
       </div>
 
@@ -67,9 +67,9 @@ export function OrganizationsTable({
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
+            <TableHead>Organization</TableHead>
             <TableHead>City</TableHead>
             <TableHead>Phone</TableHead>
-            <TableHead>Email</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -90,21 +90,26 @@ export function OrganizationsTable({
                   </TableCell>
                 </TableRow>
               ))
-            : filteredOrganizations.map((org) => (
+            : filteredContacts.map((contact) => (
                 <TableRow
-                  key={org.id}
-                  onClick={() => router.push(`/organizations/${org.id}/edit`)}
+                  key={contact.id}
+                  onClick={() => router.push(`/contacts/${contact.id}/edit`)}
                 >
                   <TableCell className="font-medium">
-                    {org.attributes.name}
+                    {contact.attributes.first_name}{" "}
+                    {contact.attributes.last_name}
                   </TableCell>
-                  <TableCell>{org.attributes.city || "-"}</TableCell>
-                  <TableCell>{org.attributes.phone || "-"}</TableCell>
-                  <TableCell>{org.attributes.email || "-"}</TableCell>
+                  <TableCell>
+                    {contact.attributes.organization_name || "-"}
+                  </TableCell>
+                  <TableCell>{contact.attributes.city || "-"}</TableCell>
+                  <TableCell>{contact.attributes.phone || "-"}</TableCell>
                 </TableRow>
               ))}
         </TableBody>
       </Table>
     </div>
   );
-}
+};
+
+export default ContactsTable;

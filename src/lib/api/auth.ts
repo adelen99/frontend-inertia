@@ -1,4 +1,3 @@
-// lib/api/auth.ts
 import { useMutation } from "@tanstack/react-query";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";

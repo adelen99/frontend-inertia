@@ -1,4 +1,4 @@
-"use client";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import {
   Pagination,
@@ -7,24 +7,24 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
-import { useRouter, useSearchParams } from "next/navigation";
+} from "./ui/pagination";
 
-interface OrganizationsPaginationProps {
+interface ContactsPaginationProps {
   currentPage: number;
   totalPages: number;
 }
-export function OrganizationsPagination({
+
+const ContactsPagination = ({
   currentPage,
   totalPages,
-}: OrganizationsPaginationProps) {
+}: ContactsPaginationProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", page.toString());
-    router.push(`/organizations?${params.toString()}`);
+    router.push(`/contacts?${params.toString()}`);
   };
 
   return (
@@ -66,4 +66,6 @@ export function OrganizationsPagination({
       </PaginationContent>
     </Pagination>
   );
-}
+};
+
+export default ContactsPagination;

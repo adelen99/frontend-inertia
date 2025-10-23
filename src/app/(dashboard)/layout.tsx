@@ -18,7 +18,6 @@ export default function DashboardLayout({
         <header className="flex h-16 items-center gap-4 border-b px-4">
           <SidebarTrigger />
 
-          {/* Desktop - full header */}
           <div className="hidden md:flex items-center justify-between w-full">
             <h1 className="text-xl font-semibold">
               <Link href="/">BinarCode</Link>
@@ -30,7 +29,6 @@ export default function DashboardLayout({
             </div>
           </div>
 
-          {/* Mobile - compact header */}
           <div className="flex md:hidden items-center  justify-between w-full">
             <h1 className="text-lg font-semibold">
               <Link href="/">BinarCode</Link>
