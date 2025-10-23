@@ -33,3 +33,6 @@ export interface ContactsResponse {
     total: number;
   };
 }
+export interface SingleContactData {
+  data: ContactData;
+}

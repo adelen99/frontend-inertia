@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -11,8 +10,8 @@ import { useForm } from "react-hook-form";
 interface OrganizationFormProps {
   onSubmit: (data: OrganizationFormData) => void;
   defaultValues?: Partial<OrganizationFormData>;
-  submitLabel?: string;
   isLoading?: boolean;
+  formId?: string; // Add formId prop
 }
 
 export const OrganizationForm = ({
@@ -27,8 +26,8 @@ export const OrganizationForm = ({
     country: "",
     postal_code: "",
   },
-  submitLabel = "Submit",
   isLoading = false,
+  formId = "org-form", // Default formId
 }: OrganizationFormProps) => {
   const {
     register,
@@ -40,7 +39,7 @@ export const OrganizationForm = ({
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} id={formId}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-6">
           <div className="grid gap-2">
@@ -131,12 +130,6 @@ export const OrganizationForm = ({
             />
           </div>
         </div>
-      </div>
-
-      <div className="flex justify-end">
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? "Loading..." : submitLabel}
-        </Button>
       </div>
     </form>
   );

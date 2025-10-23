@@ -19,11 +19,11 @@ const ContactsPage = () => {
 
   const { data, isLoading, error } = useContacts(page);
 
-  if (error) return <div>Error loading organizations</div>;
+  if (error) return <div>Error loading contacts</div>;
 
   return (
     <div className="flex flex-col gap-8">
-      <h2 className="text-2xl font-bold">Organizations</h2>
+      <h2 className="text-2xl font-bold">Contacts</h2>
       <ContactsTable contacts={data?.data || []} isLoading={isLoading} />
       {data?.meta && !isLoading && (
         <ContactsPagination

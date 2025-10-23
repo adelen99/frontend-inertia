@@ -33,8 +33,6 @@ async function updateOrganization(
 }
 
 async function deleteOrganization(id: string): Promise<void> {
-  console.log("🗑️ Deleting organization ID:", id);
-  console.log("🗑️ Full URL:", `/organizations/${id}`);
   return apiRestify<void>(`/organizations/${id}`, {
     method: "DELETE",
   });
