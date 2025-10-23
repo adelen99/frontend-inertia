@@ -2,7 +2,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -63,7 +62,6 @@ export function OrganizationsTable({
       </div>
 
       <Table>
-        <TableCaption>A list of your organizations.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>

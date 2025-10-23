@@ -1,11 +1,7 @@
 import CreateOrganizationCard from "@/components/create-organization-card";
 
 const CreatePage = () => {
-  return (
-    <div>
-      <CreateOrganizationCard />
-    </div>
-  );
+  return <CreateOrganizationCard />;
 };
 
 export default CreatePage;

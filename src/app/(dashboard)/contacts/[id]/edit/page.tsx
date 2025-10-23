@@ -1,7 +1,8 @@
-import React from "react";
+import ContactDetails from "@/components/contact-details";
 
-const EditPage = () => {
-  return <div>Edit Contact</div>;
+const EditPage = async ({ params }: { params: { id: string } }) => {
+  const { id } = await params;
+  return <ContactDetails id={id} />;
 };
 
 export default EditPage;

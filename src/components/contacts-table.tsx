@@ -2,7 +2,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -55,7 +54,7 @@ const ContactsTable = ({ contacts, isLoading = false }: ContactsTablePage) => {
         </div>
         <Button
           onClick={() => {
-            router.push("/organizations/create");
+            router.push("/contacts/create");
           }}
         >
           Create contact
@@ -63,7 +62,6 @@ const ContactsTable = ({ contacts, isLoading = false }: ContactsTablePage) => {
       </div>
 
       <Table>
-        <TableCaption>A list of your organizations.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
