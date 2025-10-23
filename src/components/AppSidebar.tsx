@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import Link from "next/link";
-import LogoLogin from "./LogoLogin";
+import LogoLogin from "./auth/LogoLogin";
 
 import { menuItems } from "@/constants/menuItems";
 export function AppSidebar() {

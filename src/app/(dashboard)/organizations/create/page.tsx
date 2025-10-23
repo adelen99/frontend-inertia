@@ -1,4 +1,4 @@
-import CreateOrganizationCard from "@/components/create-organization-card";
+import CreateOrganizationCard from "@/components/organizations/CreateOrganizationCard";
 
 const CreatePage = () => {
   return <CreateOrganizationCard />;

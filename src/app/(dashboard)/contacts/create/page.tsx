@@ -1,4 +1,4 @@
-import CreateContactCard from "@/components/create-contact-card";
+import CreateContactCard from "@/components/organizations/CreateOrganizationCard";
 
 const CreatePage = () => {
   return <CreateContactCard />;

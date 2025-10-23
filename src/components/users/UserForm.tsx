@@ -3,7 +3,14 @@ import { Label } from "@/components/ui/label";
 
 import { userFormSchema, UserFormValues } from "@/lib/validations/users";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 interface UserForm {
   onSubmit: (data: UserFormValues) => void;
@@ -24,7 +31,7 @@ export const UserForm = ({
   isLoading = false,
   formId = "user-form",
 }: UserForm) => {
-  const { register, handleSubmit } = useForm<UserFormValues>({
+  const { register, handleSubmit, control } = useForm<UserFormValues>({
     resolver: zodResolver(userFormSchema),
     defaultValues,
   });
@@ -62,26 +69,39 @@ export const UserForm = ({
               disabled={isLoading}
             />
           </div>
+        </div>
 
+        <div className="flex flex-col gap-6">
+          {" "}
           <div className="grid gap-2">
             <Label htmlFor="password">Password*</Label>
             <Input
               id="password"
-              type="text"
+              type="password"
               {...register("password")}
               disabled={isLoading}
             />
           </div>
-        </div>
-
-        <div className="flex flex-col gap-6">
           <div className="grid gap-2">
             <Label htmlFor="role">Role*</Label>
-            <Input
-              id="role"
-              type="text"
-              {...register("role")}
-              disabled={isLoading}
+            <Controller
+              name="role"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  disabled={isLoading}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="user">User</SelectItem>
+                    <SelectItem value="owner">Owner</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
             />
           </div>
         </div>

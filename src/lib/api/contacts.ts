@@ -37,7 +37,7 @@ async function updateContact({
 }): Promise<SingleContactData> {
   const payload = {
     ...data,
-    organization_id: parseInt(data.organization_id, 10), // ✅ Convertește la number
+    organization_id: parseInt(data.organization_id, 10),
   };
   return apiRestify<SingleContactData>(`/contacts/${id}`, {
     method: "PATCH",

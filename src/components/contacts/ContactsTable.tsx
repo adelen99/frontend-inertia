@@ -10,9 +10,10 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { ContactData } from "@/lib/types/contacts";
 import { useRouter } from "next/navigation";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+
 import { useMemo, useState } from "react";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 interface ContactsTablePage {
   contacts: ContactData[];

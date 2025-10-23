@@ -7,12 +7,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Skeleton } from "@/components/ui/skeleton";
 import { OrganizationData } from "@/lib/types/organization";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Spinner } from "../ui/spinner";
 
 interface OrganizationsTableProps {
   organizations: OrganizationData[];
@@ -71,36 +71,25 @@ export function OrganizationsTable({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {isLoading
-            ? Array.from({ length: 10 }).map((_, i) => (
-                <TableRow key={i}>
-                  <TableCell>
-                    <Skeleton className="h-4 w-32" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-4 w-24" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-4 w-28" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-4 w-36" />
-                  </TableCell>
-                </TableRow>
-              ))
-            : filteredOrganizations.map((org) => (
-                <TableRow
-                  key={org.id}
-                  onClick={() => router.push(`/organizations/${org.id}/edit`)}
-                >
-                  <TableCell className="font-medium">
-                    {org.attributes.name}
-                  </TableCell>
-                  <TableCell>{org.attributes.city || "-"}</TableCell>
-                  <TableCell>{org.attributes.phone || "-"}</TableCell>
-                  <TableCell>{org.attributes.email || "-"}</TableCell>
-                </TableRow>
-              ))}
+          {isLoading ? (
+            <div className="flex items-center justify-center min-h-[400px]">
+              <Spinner size="lg" />
+            </div>
+          ) : (
+            filteredOrganizations.map((org) => (
+              <TableRow
+                key={org.id}
+                onClick={() => router.push(`/organizations/${org.id}/edit`)}
+              >
+                <TableCell className="font-medium">
+                  {org.attributes.name}
+                </TableCell>
+                <TableCell>{org.attributes.city || "-"}</TableCell>
+                <TableCell>{org.attributes.phone || "-"}</TableCell>
+                <TableCell>{org.attributes.email || "-"}</TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </div>

@@ -1,5 +1,4 @@
-import CreateUserCard from "@/components/create-user-card";
-import React from "react";
+import CreateUserCard from "@/components/users/CreateUserCard";
 
 const CreatePage = () => {
   return <CreateUserCard />;
