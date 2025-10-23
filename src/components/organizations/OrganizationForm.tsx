@@ -11,7 +11,7 @@ interface OrganizationFormProps {
   onSubmit: (data: OrganizationFormData) => void;
   defaultValues?: Partial<OrganizationFormData>;
   isLoading?: boolean;
-  formId?: string; // Add formId prop
+  formId?: string;
 }
 
 export const OrganizationForm = ({
@@ -27,7 +27,7 @@ export const OrganizationForm = ({
     postal_code: "",
   },
   isLoading = false,
-  formId = "org-form", // Default formId
+  formId = "org-form",
 }: OrganizationFormProps) => {
   const {
     register,

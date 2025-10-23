@@ -1,7 +1,5 @@
+import DummyDashboard from "@/components/dummyData/DummyDashboard";
+
 export default function Home() {
-  return (
-    <div>
-      <p>Dashboard</p>
-    </div>
-  );
+  return <DummyDashboard />;
 }

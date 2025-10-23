@@ -6,27 +6,34 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useDeleteContact, useUpdateContact } from "@/lib/api/contacts";
-import { Contact } from "@/lib/types/contacts";
-import { ContactFormValues } from "@/lib/validations/contacts";
+import {
+  useDeleteOrganization,
+  useUpdateOrganization,
+} from "@/lib/api/organizations";
+import { Organization } from "@/lib/types/organization";
+import { OrganizationFormData } from "@/lib/validations/organization";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { ContactForm } from "./contact-form";
+import { OrganizationForm } from "./OrganizationForm";
 
-const UpdateContactCard = ({ contact }: { contact: Contact }) => {
+const UpdateOrganizationCard = ({
+  organization,
+}: {
+  organization: Organization;
+}) => {
   const router = useRouter();
-  const updateMutation = useUpdateContact();
-  const deleteMutation = useDeleteContact();
+  const updateMutation = useUpdateOrganization();
+  const deleteMutation = useDeleteOrganization();
 
-  const onSubmit = (data: ContactFormValues) => {
+  const onSubmit = (data: OrganizationFormData) => {
     updateMutation.mutate(
-      { id: contact.id.toString(), data },
+      { id: organization.id.toString(), data },
       {
         onSuccess: () => {
-          toast.success("Contact updated successfully!");
+          toast.success("Organization updated successfully!");
         },
         onError: () => {
-          toast.error("Failed to update contact");
+          toast.error("Failed to update organization");
         },
       }
     );
@@ -34,14 +41,14 @@ const UpdateContactCard = ({ contact }: { contact: Contact }) => {
 
   const handleDelete = () => {
     toast("Are you sure?", {
-      description: `This will permanently delete "${contact.first_name} ${contact.last_name}"`,
+      description: `This will permanently delete "${organization.name}"`,
       action: {
         label: "Delete",
         onClick: () => {
-          deleteMutation.mutate(contact.id.toString(), {
+          deleteMutation.mutate(organization.id.toString(), {
             onSuccess: () => {
-              toast.success("Contact deleted!");
-              router.push("/contacts");
+              toast.success("Organization deleted!");
+              router.push("/organizations");
             },
             onError: () => {
               toast.error("Failed to delete");
@@ -61,27 +68,25 @@ const UpdateContactCard = ({ contact }: { contact: Contact }) => {
       <CardHeader>
         <CardTitle>
           <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            Contacts / {contact.first_name} {contact.last_name}
+            Organizations / {organization.name}
           </h2>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <ContactForm
+        <OrganizationForm
           onSubmit={onSubmit}
           defaultValues={{
-            first_name: contact.first_name,
-            last_name: contact.last_name,
-            organization_id: contact.organization_id.toString(),
-            email: contact.email || "",
-            phone: contact.phone || "",
-            address: contact.address || "",
-            city: contact.city || "",
-            state: contact.state || "",
-            country: contact.country || "",
-            postal_code: contact.postal_code || "",
+            name: organization.name,
+            email: organization.email || "",
+            phone: organization.phone || "",
+            address: organization.address || "",
+            city: organization.city || "",
+            state: organization.state || "",
+            country: organization.country || "",
+            postal_code: organization.postal_code || "",
           }}
           isLoading={updateMutation.isPending}
-          formId="update-contact-form"
+          formId="update-org-form"
         />
       </CardContent>
       <CardFooter className="flex gap-2 justify-between">
@@ -91,19 +96,19 @@ const UpdateContactCard = ({ contact }: { contact: Contact }) => {
           onClick={handleDelete}
           disabled={deleteMutation.isPending}
         >
-          Delete contact
+          Delete organization
         </Button>
         <Button
           type="submit"
           variant="default"
-          form="update-contact-form"
+          form="update-org-form"
           disabled={updateMutation.isPending}
         >
-          Update contact
+          Update organization
         </Button>
       </CardFooter>
     </Card>
   );
 };
 
-export default UpdateContactCard;
+export default UpdateOrganizationCard;

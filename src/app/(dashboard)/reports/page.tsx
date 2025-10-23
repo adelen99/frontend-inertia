@@ -1,7 +1,7 @@
-import React from "react";
+import DummyReports from "@/components/dummyData/DummyReports";
 
 const ReportsPage = () => {
-  return <div>Reports</div>;
+  return <DummyReports />;
 };
 
 export default ReportsPage;

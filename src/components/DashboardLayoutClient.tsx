@@ -1,0 +1,54 @@
+"use client";
+
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+
+import { useAuthStore } from "@/lib/store/authStore";
+
+import Link from "next/link";
+import { AppSidebar } from "./AppSidebar";
+import { DropdownMenuUser } from "./Dropdown";
+
+interface DashboardLayoutClientProps {
+  children: React.ReactNode;
+}
+
+export default function DashboardLayoutClient({
+  children,
+}: DashboardLayoutClientProps) {
+  const { user } = useAuthStore();
+
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="w-full">
+        <header className="flex h-16 items-center gap-4 border-b px-4">
+          <SidebarTrigger />
+
+          <div className="hidden md:flex items-center justify-between w-full">
+            <h1 className="text-xl font-semibold">
+              <Link href="/">BinarCode</Link>
+            </h1>
+            <div>
+              <span className="flex">
+                <DropdownMenuUser user={user} />
+              </span>
+            </div>
+          </div>
+
+          <div className="flex md:hidden items-center justify-between w-full">
+            <h1 className="text-lg font-semibold">
+              <Link href="/">BinarCode</Link>
+            </h1>
+            <div>
+              <span className="flex">
+                <DropdownMenuUser user={user} />
+              </span>
+            </div>
+          </div>
+        </header>
+
+        <div className="p-4">{children}</div>
+      </main>
+    </SidebarProvider>
+  );
+}

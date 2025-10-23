@@ -10,12 +10,12 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
+import { Spinner } from "../ui/spinner";
 
 interface UsersTableProps {
   users: UserData[];
@@ -40,17 +40,12 @@ const UsersTable = ({ users, isLoading = false }: UsersTableProps) => {
   const resetSearchInput = () => {
     setSearchInput("");
   };
-  if (isLoading) {
+  if (isLoading)
     return (
-      <div className="space-y-3">
-        <Skeleton className="h-12 w-full" />
-        <Skeleton className="h-12 w-full" />
-        <Skeleton className="h-12 w-full" />
-        <Skeleton className="h-12 w-full" />
-        <Skeleton className="h-12 w-full" />
+      <div className="flex items-center justify-center min-h-[400px]">
+        <Spinner size="lg" />
       </div>
     );
-  }
 
   if (users.length === 0) {
     return (

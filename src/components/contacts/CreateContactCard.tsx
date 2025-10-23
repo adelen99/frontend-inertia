@@ -1,33 +1,31 @@
 "use client";
-import { OrganizationForm } from "./organization-form";
-import { useCreateOrganization } from "@/lib/api/organizations";
+import { ContactForm } from "./ContactForm";
+import { useCreateContact } from "@/lib/api/contacts";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { OrganizationFormData } from "@/lib/validations/organization";
+
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import { Button } from "./ui/button";
-import { UserForm } from "./user-form";
-import { UserFormValues } from "@/lib/validations/users";
-import { useCreateUser } from "@/lib/api/users";
+} from "../ui/card";
+import { Button } from "../ui/button";
+import { ContactFormValues } from "@/lib/validations/contacts";
 
-const CreateUserCard = () => {
+const CreateContactCard = () => {
   const router = useRouter();
-  const createMutation = useCreateUser();
+  const createMutation = useCreateContact();
 
-  const handleCreate = (data: UserFormValues) => {
+  const handleCreate = (data: ContactFormValues) => {
     createMutation.mutate(data, {
       onSuccess: () => {
-        toast.success("Organization created successfully!");
-        router.push("/organizations");
+        toast.success("Contact created successfully!");
+        router.push("/contacts");
       },
       onError: () => {
-        toast.error("Failed to create organization");
+        toast.error("Failed to create contact");
       },
     });
   };
@@ -37,28 +35,28 @@ const CreateUserCard = () => {
       <CardHeader>
         <CardTitle>
           <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            Create New User
+            Create New Contact
           </h2>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <UserForm
+        <ContactForm
           onSubmit={handleCreate}
           isLoading={createMutation.isPending}
-          formId="create-user-form"
+          formId="create-contact-form"
         />
       </CardContent>
       <CardFooter className="flex justify-end">
         <Button
           type="submit"
-          form="create-user-form"
+          form="create-contact-form"
           disabled={createMutation.isPending}
         >
-          Create user
+          Create contact
         </Button>
       </CardFooter>
     </Card>
   );
 };
 
-export default CreateUserCard;
+export default CreateContactCard;

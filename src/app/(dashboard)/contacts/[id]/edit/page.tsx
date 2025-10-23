@@ -1,4 +1,4 @@
-import ContactDetails from "@/components/contact-details";
+import ContactDetails from "@/components/contacts/ContactDetails";
 
 const EditPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
