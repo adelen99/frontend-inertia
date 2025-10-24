@@ -39,16 +39,14 @@ const UpdateUserCard = ({ user }: { user: User }) => {
       description: `This will permanently delete "${user.first_name} ${user.last_name}"`,
       action: {
         label: "Delete",
-        onClick: () => {
-          deleteMutation.mutate(user.id.toString(), {
-            onSuccess: () => {
-              toast.success("User deleted!");
-              router.push("/users");
-            },
-            onError: () => {
-              toast.error("Failed to delete");
-            },
-          });
+        onClick: async () => {
+          try {
+            await deleteMutation.mutateAsync(user.id.toString());
+            toast.success("User deleted!");
+            router.push("/users");
+          } catch (error) {
+            toast.error("Failed to delete");
+          }
         },
       },
       cancel: {
