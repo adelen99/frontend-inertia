@@ -41,7 +41,7 @@ export const ContactForm = ({
   formId = "contact-form",
 }: ContactFormProps) => {
   const { data: organizationsData, isLoading: isLoadingOrgs } =
-    useAllOrganizations(); // ✅ SCHIMBAT!
+    useAllOrganizations();
 
   const {
     register,

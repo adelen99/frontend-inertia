@@ -1,9 +1,7 @@
 "use client";
-
-import { useCreateOrganization } from "@/lib/api/organizations";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { OrganizationFormData } from "@/lib/validations/organization";
+
 import {
   Card,
   CardContent,
@@ -12,20 +10,23 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Button } from "../ui/button";
-import { OrganizationForm } from "./OrganizationForm";
+
+import { ContactForm } from "../contacts/ContactForm";
+import { useCreateContact } from "@/lib/api/contacts";
+import { ContactFormValues } from "@/lib/validations/contacts";
 
 const CreateOrganizationCard = () => {
   const router = useRouter();
-  const createMutation = useCreateOrganization();
+  const createMutation = useCreateContact();
 
-  const handleCreate = (data: OrganizationFormData) => {
+  const handleCreate = (data: ContactFormValues) => {
     createMutation.mutate(data, {
       onSuccess: () => {
-        toast.success("Organization created successfully!");
-        router.push("/organizations");
+        toast.success("Contact created successfully!");
+        router.push("/contacts");
       },
       onError: () => {
-        toast.error("Failed to create organization");
+        toast.error("Failed to create contact");
       },
     });
   };
@@ -35,24 +36,24 @@ const CreateOrganizationCard = () => {
       <CardHeader>
         <CardTitle>
           <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            Create New Organization
+            Create New Contact
           </h2>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <OrganizationForm
+        <ContactForm
           onSubmit={handleCreate}
           isLoading={createMutation.isPending}
-          formId="create-org-form"
+          formId="create-contact-form"
         />
       </CardContent>
       <CardFooter className="flex justify-end">
         <Button
           type="submit"
-          form="create-org-form"
+          form="create-contact-form"
           disabled={createMutation.isPending}
         >
-          Create organization
+          Create contact
         </Button>
       </CardFooter>
     </Card>

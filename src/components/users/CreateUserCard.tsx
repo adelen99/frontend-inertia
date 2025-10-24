@@ -20,11 +20,11 @@ const CreateUserCard = () => {
   const handleCreate = (data: UserFormValues) => {
     createMutation.mutate(data, {
       onSuccess: () => {
-        toast.success("Organization created successfully!");
-        router.push("/organizations");
+        toast.success("User created successfully!");
+        router.push("/users");
       },
       onError: () => {
-        toast.error("Failed to create organization");
+        toast.error("Failed to create User");
       },
     });
   };
