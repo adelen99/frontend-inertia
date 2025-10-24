@@ -15,6 +15,7 @@ import { OrganizationFormData } from "@/lib/validations/organization";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { OrganizationForm } from "./OrganizationForm";
+import Link from "next/link";
 
 const UpdateOrganizationCard = ({
   organization,
@@ -68,7 +69,10 @@ const UpdateOrganizationCard = ({
       <CardHeader>
         <CardTitle>
           <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            Organizations / {organization.name}
+            <Link href="/organizations" className="text-primary">
+              Organizations
+            </Link>{" "}
+            / {organization.name}
           </h2>
         </CardTitle>
       </CardHeader>

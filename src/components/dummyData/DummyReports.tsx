@@ -3,7 +3,7 @@ export default function DummyReports() {
     <div className="space-y-8 ml-1">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Reports</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Reports</h1>
         <p className="text-muted-foreground mt-2">
           Generate and view analytics reports
         </p>

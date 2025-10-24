@@ -12,6 +12,7 @@ import { ContactFormValues } from "@/lib/validations/contacts";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { ContactForm } from "./ContactForm";
+import Link from "next/link";
 
 const UpdateContactCard = ({ contact }: { contact: Contact }) => {
   const router = useRouter();
@@ -61,7 +62,10 @@ const UpdateContactCard = ({ contact }: { contact: Contact }) => {
       <CardHeader>
         <CardTitle>
           <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            Contacts / {contact.first_name} {contact.last_name}
+            <Link href="/contacts" className="text-primary">
+              Contacts
+            </Link>{" "}
+            / {contact.first_name} {contact.last_name}
           </h2>
         </CardTitle>
       </CardHeader>

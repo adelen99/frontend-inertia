@@ -3,7 +3,7 @@ export default function DummyDashboard() {
     <div className="ml-1 space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground mt-2">
           Overview of your CRM activity
         </p>
