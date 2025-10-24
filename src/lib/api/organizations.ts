@@ -89,8 +89,12 @@ export function useUpdateOrganization() {
   });
 }
 export function useDeleteOrganization() {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => deleteOrganization(id),
+    onSuccess: (id) => {
+      queryClient.invalidateQueries({ queryKey: ["organization", id] });
+    },
   });
 }
 
