@@ -89,12 +89,12 @@ export function useUpdateOrganization() {
   });
 }
 export function useDeleteOrganization() {
-  const queryClient = useQueryClient();
+  //const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => deleteOrganization(id),
-    onSuccess: (id) => {
-      queryClient.invalidateQueries({ queryKey: ["organization", id] });
-    },
+    // onSuccess: (id) => {
+    //   queryClient.invalidateQueries({ queryKey: ["organization", id] });
+    // },
   });
 }
 

@@ -95,11 +95,11 @@ export function useUpdateContact() {
 }
 
 export function useDeleteContact() {
-  const queryClient = useQueryClient();
+  //const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => deleteContact(id),
-    onSuccess: (id) => {
-      queryClient.invalidateQueries({ queryKey: ["contacts", id] });
-    },
+    // onSuccess: (id) => {
+    //   queryClient.invalidateQueries({ queryKey: ["contacts", id] });
+    // },
   });
 }
