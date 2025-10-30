@@ -15,7 +15,7 @@ async function fetchOrganizations(
 }
 
 async function fetchAllOrganizations(): Promise<OrganizationsResponse> {
-  return apiRestify<OrganizationsResponse>(`/organizations`);
+  return apiRestify<OrganizationsResponse>(`/organizations?per_page=1000`);
 }
 
 async function fetchOrganization(id: string): Promise<SingleOrganizationData> {
