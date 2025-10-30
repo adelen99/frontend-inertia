@@ -10,7 +10,7 @@ import {
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
-import { useAllOrganizations } from "@/lib/api/organizations"; // ✅ SCHIMBAT!
+import { useAllOrganizations } from "@/lib/api/organizations";
 import {
   contactFormSchema,
   ContactFormValues,
@@ -29,6 +29,7 @@ export const ContactForm = ({
     first_name: "",
     last_name: "",
     organization_id: "",
+    organization_name: "",
     email: "",
     phone: "",
     address: "",
@@ -107,7 +108,7 @@ export const ContactForm = ({
                         key={org.attributes.id}
                         value={org.attributes.id.toString()}
                       >
-                        {org.attributes.name} {/* ✅ SCHIMBAT! */}
+                        {org.attributes.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
